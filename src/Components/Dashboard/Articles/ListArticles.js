@@ -16,7 +16,7 @@ const ListArticles = ({articleList}) => {
     accessor: 'author.name'
   }, {
     Header: 'Date of Publish',
-    accessor: 'date_of_creation'
+    accessor: 'date_pretty'
   }]
 
   return <ReactTable data={data} columns={columns} />
