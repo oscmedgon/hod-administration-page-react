@@ -144,3 +144,14 @@ body {
   margin: 0px;
   padding: 0px;
 }
+.sidebar-link{
+  color: orange;
+}
+.sidebar-sublink *{
+  color: white;
+  text-decoration: none;
+}
+.sidebar-link i{
+  padding-right: 20px;
+  padding-left: 10px;
+}

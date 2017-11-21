@@ -1,0 +1,52 @@
+.labels{
+  display: flex;
+  justify-content: center;
+  height: 10%
+}
+.totals{
+  width: 30%;
+  text-align: center;
+  color: white;
+}
+.label-title{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px black;
+}
+.label-data{
+  font-size: 40px;
+  margin: 2px;
+  font-weight: bolder;
+  text-shadow: 1px 1px black;
+}
+
+.admin{
+  background-color: #0C7489;
+}
+
+.users{
+  background-color: #119DA4;
+}
+
+#user-list{
+  color:white;
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+#user-list *{
+  border-color: lightgrey;
+}
+#user-list .pagination-bottom .-btn{
+  background-color: #119DA4;
+  color: white;
+}
+#user-list .pagination-bottom{
+  background-color: lightgrey;
+  color: black;
+}
+
+#user-list .ReactTable .rt-thead.-header{
+  box-shadow: 0 2px 4px 0 rgba(255,255,255,0.30);
+}
