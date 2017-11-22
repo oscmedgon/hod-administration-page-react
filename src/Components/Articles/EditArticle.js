@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import CKEditor from 'react-ckeditor-component'
 
-import {GetArticle} from '../../Services'
+import {GetArticle, ModifyArticle} from '../../Services'
 import './styles.css'
 
 class NewArticle extends Component {
@@ -16,7 +16,7 @@ class NewArticle extends Component {
     this.onChange = this.onChange.bind(this)
     this.handleChanche = this.handleChanche.bind(this)
     this.handleCheckBox = this.handleCheckBox.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount () {
@@ -56,12 +56,13 @@ class NewArticle extends Component {
       return prevState
     })
   }
-  // handleSubmit (e) {
-  //   e.preventDefault()
-  //   AddNewArticle(this.state)
-  //     .then(console.log('todo ha ido bien'))
-  //     .catch(console.log('Algo ha ido mal'))
-  // }
+  handleSubmit (e) {
+    e.preventDefault()
+    const {id} = this.props.match.params
+    ModifyArticle(id, this.state)
+      .then(console.log('hola que ase'))
+      .catch(error => console.log(error.response))
+  }
 
   render () {
     return (
@@ -74,7 +75,7 @@ class NewArticle extends Component {
             <input id='title' name='title' data-field='title' type='text' onChange={this.handleChanche} value={this.state.title} className='new-article-title' placeholder='Insert article title here...' required />
           </div>
           <div className='new-article-section category-section'>
-            <select name='category' id='category' data-field='category' onChange={this.handleChanche} defaultValue={this.state.category} required>
+            <select name='category' id='category' data-field='category' onChange={this.handleChanche} value={this.state.category} required>
               <option value='' disabled>Select a category</option>
               <option value='noticias'>News</option>
               <option value='avisos'>Advices</option>
@@ -84,7 +85,7 @@ class NewArticle extends Component {
           </div>
           <div className='new-article-section featured-section'>
             <label htmlFor='featured'>Mark article as featured: </label>
-            <input type='checkbox' ref='featured' name='featured' data-field='fetured' onChange={this.handleCheckBox} />
+            <input type='checkbox' ref='featured' checked={this.state.featured} name='featured' data-field='fetured' onChange={this.handleCheckBox} />
           </div>
           <CKEditor
             activeClass='p10 article-editor'

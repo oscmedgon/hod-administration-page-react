@@ -58,7 +58,7 @@ class NewArticle extends Component {
             <input id='title' name='title' data-field='title' type='text' onChange={this.handleChanche} value={this.state.title} className='new-article-title' placeholder='Insert article title here...' required />
           </div>
           <div className='new-article-section category-section'>
-            <select name='category' id='category' data-field='category' onChange={this.handleChanche} defaultValue={this.state.category} value={this.state.category} required>
+            <select name='category' id='category' data-field='category' onChange={this.handleChanche} defaultValue={this.state.category} required>
               <option value='' disabled>Select a category</option>
               <option value='noticias'>News</option>
               <option value='avisos'>Advices</option>

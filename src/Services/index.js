@@ -12,4 +12,8 @@ function AddNewArticle (data) {
 function GetArticle (id) {
   return axios.get(`/api/article/${id}`)
 }
-export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle}
+function ModifyArticle (id, data) {
+  return axios.put(`/api/article/${id}/modify`, data)
+}
+
+export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle, ModifyArticle}

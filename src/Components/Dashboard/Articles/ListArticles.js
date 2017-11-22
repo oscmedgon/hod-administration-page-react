@@ -28,9 +28,9 @@ const ListArticles = ({articleList}) => {
                       <Link to={`/article/${props.original._id}`} className='table.icon-edit'>
                         <i className='table-icon table-icon-edit fa fa-pencil-square-o' aria-hidden='true'></i>
                       </Link>
-                      <Link to={`/article/${props.original._id}/remove`} className='table.icon-edit'>
+                      {/* <Link to={`/article/${props.original._id}/remove`} className='table.icon-edit'>
                         <i id='' className='table-icon table-icon-remove fa fa-times' aria-hidden='true'></i>
-                      </Link>
+                      </Link> */}
                     </span>)
   }
   ]
