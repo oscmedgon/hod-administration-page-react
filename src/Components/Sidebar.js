@@ -18,15 +18,6 @@ const Sidebar = () => (<div className='nav-side-menu'>
         </li>
       </Link>
       <ul className='sub-menu collapse' id='products'>
-        <li>
-          <a href='#'>Categories</a>
-        </li>
-        <li>
-          <a href='#'>Featured Articles</a>
-        </li>
-        <li>
-          <a href='#'>All articles</a>
-        </li>
         <Link to='/article/new'>
           <li className='sidebar-sublink'>
             <span>New Article</span>
@@ -38,10 +29,7 @@ const Sidebar = () => (<div className='nav-side-menu'>
             <i className='fa fa-users fa-lg' /> Users
         </li>
       </Link>
-      <ul className='sub-menu collapse' id='service'>
-        <li>View users</li>
-        <li>Manage users</li>
-        <li>Users blacklist</li>
+      <ul className='sub-menu' id='service'>
       </ul>
     </ul>
   </div>

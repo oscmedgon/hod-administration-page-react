@@ -1,10 +1,12 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
+import './table.css'
+
 const ListArticles = ({articleList}) => {
   const data = articleList
-  console.log(articleList)
   const columns = [{
     Header: 'Title',
     accessor: 'title'
@@ -17,7 +19,21 @@ const ListArticles = ({articleList}) => {
   }, {
     Header: 'Date of Publish',
     accessor: 'date_pretty'
-  }]
+  },
+  {
+    Header: 'Edit',
+    acessor: 'icon',
+    Cell: props => (
+                    <span>
+                      <Link to={`/article/${props.original._id}`} className='table.icon-edit'>
+                        <i className='table-icon table-icon-edit fa fa-pencil-square-o' aria-hidden='true'></i>
+                      </Link>
+                      <Link to={`/article/${props.original._id}/remove`} className='table.icon-edit'>
+                        <i id='' className='table-icon table-icon-remove fa fa-times' aria-hidden='true'></i>
+                      </Link>
+                    </span>)
+  }
+  ]
 
   return <ReactTable data={data} columns={columns} />
 }

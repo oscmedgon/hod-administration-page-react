@@ -9,4 +9,7 @@ function GetArticlesDashboard () {
 function AddNewArticle (data) {
   return axios.post('/api/article/new', data)
 }
-export {GetUserDashboard, GetArticlesDashboard, AddNewArticle}
+function GetArticle (id) {
+  return axios.get(`/api/article/${id}`)
+}
+export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle}

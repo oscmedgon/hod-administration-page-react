@@ -1,0 +1,11 @@
+.table-icon{
+  text-decoration: none;
+  padding: 0px 10px;
+}
+
+.table-icon-edit{
+  color: green;
+}
+.table-icon-remove{
+  color: red;
+}
