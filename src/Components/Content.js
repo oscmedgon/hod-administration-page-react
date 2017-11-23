@@ -7,24 +7,24 @@ import UserDashboard from './Dashboard/Users/'
 import ArticleDashboard from './Dashboard/Articles/'
 import NewArticle from './Articles/NewArticle'
 import EditArticle from './Articles/EditArticle'
-import {CheckToken} from '../Services'
+import {CheckToken} from '../Services/AuthServices'
 
 const Content = () => {
   if (CheckToken()) {
     return (
       <div className='content'>
         <Switch>
-          <Route exact path='/' component={Dashboard} />
-          <Route exact path='/users' component={UserDashboard} />
-          <Route exact path='/articles' component={ArticleDashboard} />
-          <Route exact path='/article/new' component={NewArticle} />
-          <Route exact path='/article/:id' component={EditArticle} />
+          <Route exact path='/administration/' component={Dashboard} />
+          <Route exact path='/administration/users' component={UserDashboard} />
+          <Route exact path='/administration/articles' component={ArticleDashboard} />
+          <Route exact path='/administration/article/new' component={NewArticle} />
+          <Route exact path='/administration/article/:id' component={EditArticle} />
         </Switch>
       </div>
     )
   } else {
     return (
-      <Redirect to='/login' />
+      <Redirect to='/administration/login' />
     )
   }
 }

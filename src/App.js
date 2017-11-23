@@ -7,8 +7,8 @@ import Admin from './Components/AdminSite'
 const App = () => (
   <div>
     <Switch>
-      <Route exact path='/login' component={Login} />
-      <Route path='/' component={Admin} />
+      <Route exact path='/administration/login' component={Login} />
+      <Route path='/administration/' component={Admin} />
     </Switch>
   </div>
 )

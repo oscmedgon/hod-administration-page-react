@@ -7,24 +7,24 @@ const Sidebar = () => (<div className='nav-side-menu'>
   <i className='fa fa-bars fa-2x toggle-btn' data-toggle='collapse' data-target='#menu-content' />
   <div className='menu-list'>
     <ul id='menu-content' className='menu-content collapse out'>
-      <Link to='/'>
+      <Link to='/administration/'>
         <li className='sidebar-link'>
             <i className='fa fa-dashboard fa-lg' /> Dashboard
         </li>
       </Link>
-      <Link to='/articles'>
+      <Link to='/administration/articles'>
         <li className='sidebar-link'>
             <i className='fa fa-archive fa-lg' /> Articles
         </li>
       </Link>
       <ul className='sub-menu collapse' id='products'>
-        <Link to='/article/new'>
+        <Link to='/administration/article/new'>
           <li className='sidebar-sublink'>
             <span>New Article</span>
           </li>
         </Link>
       </ul>
-      <Link to='/users'>
+      <Link to='/administration/users'>
         <li className='sidebar-link'>
             <i className='fa fa-users fa-lg' /> Users
         </li>
