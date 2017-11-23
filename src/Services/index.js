@@ -15,5 +15,16 @@ function GetArticle (id) {
 function ModifyArticle (id, data) {
   return axios.put(`/api/article/${id}/modify`, data)
 }
+function LoginService (data) {
+  return axios.post('/api/admin/login', data)
+}
+function CheckToken () {
+  const token = window.sessionStorage.getItem('token')
+  if (token) {
+    return true
+  } else {
+    return false
+  }
+}
 
-export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle, ModifyArticle}
+export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle, ModifyArticle, LoginService, CheckToken}

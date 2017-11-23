@@ -1,11 +1,15 @@
 import React from 'react'
-import Sidebar from './Components/Sidebar'
-import Content from './Components/Content'
+import {Route, Switch} from 'react-router-dom'
+
+import Login from './Components/Login'
+import Admin from './Components/AdminSite'
 
 const App = () => (
   <div>
-    <Sidebar />
-    <Content />
+    <Switch>
+      <Route exact path='/login' component={Login} />
+      <Route path='/' component={Admin} />
+    </Switch>
   </div>
 )
 
