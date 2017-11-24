@@ -11,7 +11,8 @@ class NewArticle extends Component {
       title: '',
       category: '',
       featured: false,
-      body: ''
+      body: '',
+      image: ''
     }
     this.onChange = this.onChange.bind(this)
     this.handleChanche = this.handleChanche.bind(this)
@@ -26,6 +27,7 @@ class NewArticle extends Component {
       const article = response.data
       this.setState(prevState => {
         prevState.title = article.title
+        prevState.image = article.image
         prevState.category = article.category
         prevState.featured = article.featured
         prevState.body = article.body
@@ -42,7 +44,7 @@ class NewArticle extends Component {
     })
   }
   handleChanche (e) {
-    const fieldToUpdate = e.target.id
+    const fieldToUpdate = e.target.name
     const newData = e.target.value
     this.setState(prevState => {
       prevState[fieldToUpdate] = newData
@@ -87,6 +89,11 @@ class NewArticle extends Component {
             <label htmlFor='featured'>Mark article as featured: </label>
             <input type='checkbox' ref='featured' checked={this.state.featured} name='featured' data-field='fetured' onChange={this.handleCheckBox} />
           </div>
+          <div className='image-preview'>
+            <input type='text' name='image' className='img-input' placeholder='Insert image url' value={this.state.image} onChange={this.handleChanche} />
+            <br />
+            <img src={this.state.image} alt='' height='300' />
+          </div>
           <CKEditor
             activeClass='p10 article-editor'
             content={this.state.body}
@@ -94,6 +101,7 @@ class NewArticle extends Component {
               'change': this.onChange
             }}
           />
+          <button type='submit' className='btn btn-primary btn-block btn-large'>Publish article</button>
         </form>
       </div>
     )

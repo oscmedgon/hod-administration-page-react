@@ -10,14 +10,13 @@ function CheckToken () {
 }
 function GetToken () {
   const token = window.sessionStorage.getItem('token')
-    return ({
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `bearer ${token}`
-      }
+  return ({
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `bearer ${token}`
+    }
   })
 }
-
 
 export {CheckToken, GetToken}

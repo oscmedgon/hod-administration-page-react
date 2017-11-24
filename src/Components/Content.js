@@ -12,7 +12,7 @@ import {CheckToken} from '../Services/AuthServices'
 const Content = () => {
   if (CheckToken()) {
     return (
-      <div className='content'>
+      <div id='content'>
         <Switch>
           <Route exact path='/administration/' component={Dashboard} />
           <Route exact path='/administration/users' component={UserDashboard} />

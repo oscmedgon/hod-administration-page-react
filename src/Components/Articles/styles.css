@@ -67,3 +67,11 @@
   width: 98%;
   margin: auto;
 }
+.image-preview{
+  text-align: center;
+  width: 100%;
+}
+.img-input{
+  font-size: 30px;
+  width: 100%;
+}
