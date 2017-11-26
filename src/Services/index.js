@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {GetToken} from './AuthServices'
+import toastr from 'toastr'
 
 function GetUserDashboard () {
   return axios.get('/api/dashboard/user', GetToken())

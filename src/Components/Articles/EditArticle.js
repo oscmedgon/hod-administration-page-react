@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import CKEditor from 'react-ckeditor-component'
+import {Redirect} from 'react-router-dom'
 
 import {GetArticle, ModifyArticle} from '../../Services'
 import './styles.css'
@@ -8,6 +9,7 @@ class NewArticle extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      submited: false,
       title: '',
       category: '',
       featured: false,
@@ -62,7 +64,10 @@ class NewArticle extends Component {
     e.preventDefault()
     const {id} = this.props.match.params
     ModifyArticle(id, this.state)
-      .then(console.log('hola que ase'))
+      .then(this.setState(prevState => {
+        prevState.submited = true
+        return prevState
+      }))
       .catch(error => console.log(error.response))
   }
 
@@ -103,6 +108,7 @@ class NewArticle extends Component {
           />
           <button type='submit' className='btn btn-primary btn-block btn-large'>Publish article</button>
         </form>
+        {this.state.submited ? <Redirect to='/administration' /> : <div />}
       </div>
     )
   }

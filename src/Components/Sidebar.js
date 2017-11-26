@@ -4,20 +4,19 @@ import './Sidebar.css'
 
 const Sidebar = () => (<div className='nav-side-menu'>
   <div className='brand'>Harbingers of Devastation</div>
-  <i className='fa fa-bars fa-2x toggle-btn' data-toggle='collapse' data-target='#menu-content' />
   <div className='menu-list'>
-    <ul id='menu-content' className='menu-content collapse out'>
+    <ul id='menu-content' className='menu-content out'>
       <Link to='/administration/'>
         <li className='sidebar-link'>
-            <i className='fa fa-dashboard fa-lg' /> Dashboard
+          <i className='fa fa-dashboard fa-lg' /> <span>Dashboard</span>
         </li>
       </Link>
       <Link to='/administration/articles'>
         <li className='sidebar-link'>
-            <i className='fa fa-archive fa-lg' /> Articles
+          <i className='fa fa-archive fa-lg' /> <span>Articles</span>
         </li>
       </Link>
-      <ul className='sub-menu collapse' id='products'>
+      <ul className='sub-menu' id='products'>
         <Link to='/administration/article/new'>
           <li className='sidebar-sublink'>
             <span>New Article</span>
@@ -26,11 +25,9 @@ const Sidebar = () => (<div className='nav-side-menu'>
       </ul>
       <Link to='/administration/users'>
         <li className='sidebar-link'>
-            <i className='fa fa-users fa-lg' /> Users
+          <i className='fa fa-users fa-lg' /><span>Users</span>
         </li>
       </Link>
-      <ul className='sub-menu' id='service'>
-      </ul>
     </ul>
   </div>
 </div>)

@@ -8,6 +8,7 @@ class Dashboard extends Component {
   constructor () {
     super()
     this.state = ({
+      recentUsers: 0,
       totalAdmins: 0,
       totalUsers: 0,
       userList: []
@@ -33,6 +34,10 @@ class Dashboard extends Component {
           <div className='totals admin'>
             <h2 className='label-title'>Admin Users:</h2>
             <p className='label-data'>{this.state.totalAdmins}</p>
+          </div>
+          <div className='totals users'>
+            <h2 className='label-title'>Registered users last week:</h2>
+            <p className='label-data'>{this.state.recentUsers}</p>
           </div>
         </div>
         <div id='user-list'>
