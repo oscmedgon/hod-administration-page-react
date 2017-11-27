@@ -24,14 +24,14 @@ const ListArticles = ({articleList}) => {
     Header: 'Edit',
     acessor: 'icon',
     Cell: props => (
-                    <span>
-                      <Link to={`/administration/article/${props.original._id}`} className='table.icon-edit'>
-                        <i className='table-icon table-icon-edit fa fa-pencil-square-o' aria-hidden='true'></i>
-                      </Link>
-                      {/* <Link to={`/administration/article/${props.original._id}/remove`} className='table.icon-edit'>
-                        <i id='' className='table-icon table-icon-remove fa fa-times' aria-hidden='true'></i>
-                      </Link> */}
-                    </span>)
+      <span>
+        <Link to={`/administration/article/${props.original._id}`} className='table.icon-edit'>
+          <i className='table-icon table-icon-edit fa fa-pencil-square-o fa-lg' aria-hidden='true' />
+        </Link>
+        {/* <Link to={`/administration/article/${props.original._id}/remove`} className='table.icon-edit'>
+          <i id='' className='table-icon table-icon-remove fa fa-times' aria-hidden='true'></i>
+        </Link> */}
+      </span>)
   }
   ]
 

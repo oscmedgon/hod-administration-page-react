@@ -29,19 +29,20 @@
 }
 
 #user-list{
-  color:white;
+  color:black;
   margin: auto;
   margin-top: 30px;
   border-radius: 10px;
   text-align: center;
   width: 90%;
+  background-color: rgba(255,255,255,.8);
 }
 #user-list *{
-  border-color: lightgrey;
+  border-color: rgba(0,0,0,0.3);
 }
 #user-list .pagination-bottom .-btn{
   background-color: #119DA4;
-  color: white;
+  color: grey;
 }
 #user-list .pagination-bottom{
   background-color: lightgrey;
@@ -49,5 +50,5 @@
 }
 
 #user-list .ReactTable .rt-thead.-header{
-  box-shadow: 0 2px 4px 0 rgba(255,255,255,0.30);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.30);
 }

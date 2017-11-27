@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import toastr from 'toastr'
 
 import './login.css'
 import {LoginService} from '../../Services'
@@ -15,13 +16,19 @@ class Login extends Component {
   }
   handleSubmit = async (e) =>{
     e.preventDefault()
-    const res = await LoginService(this.state)
-    const {token} = res.data
-    window.sessionStorage.setItem('token', token)
-    this.setState(prevState => {
-      prevState.logged = true
-      return prevState
-    })
+    try {
+      const res = await LoginService(this.state)
+      const {token} = res.data
+      window.sessionStorage.setItem('token', token)
+      toastr.success('Login success!!')
+      this.setState(prevState => {
+        prevState.logged = true
+        return prevState
+      })
+    }
+    catch(e) {
+      toastr.error('Username or password incorrect or not autorized to access!!')
+    }
   }
   handleChanche = e => {
     const {name, value} = e.target

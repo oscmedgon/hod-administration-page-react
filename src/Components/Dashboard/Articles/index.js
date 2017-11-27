@@ -10,6 +10,7 @@ class Dashboard extends Component {
     this.state = ({
       totalArticlesFeatured: 0,
       totalArticles: 0,
+      recentArticles: 0,
       articleList: []
     })
   }
@@ -33,6 +34,10 @@ class Dashboard extends Component {
           <div className='totals admin'>
             <h2 className='label-title'>Featured Articles:</h2>
             <p className='label-data'>{this.state.totalArticlesFeatured}</p>
+          </div>
+          <div className='totals users'>
+            <h2 className='label-title'>Articles published last week:</h2>
+            <p className='label-data'>{this.state.recentArticles}</p>
           </div>
         </div>
         <div id='user-list'>

@@ -29,17 +29,19 @@
 }
 
 #user-list{
-  color:white;
+  color:grey;
   margin: auto;
   margin-top: 30px;
   border-radius: 10px;
   text-align: center;
+  font-family: 'Play', sans-serif;
+  font-size: 20px;
 }
 #user-list *{
   border-color: lightgrey;
 }
 #user-list .pagination-bottom .-btn{
-  background-color: #119DA4;
+  background-color: white;
   color: white;
 }
 #user-list .pagination-bottom{

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import CKEditor from 'react-ckeditor-component'
 import {Redirect} from 'react-router-dom'
+import toastr from 'toastr'
 
 import {AddNewArticle} from '../../Services'
 import './styles.css'
@@ -43,14 +44,19 @@ class NewArticle extends Component {
       return prevState
     })
   }
-  handleSubmit (e) {
+  handleSubmit = async (e) => {
     e.preventDefault()
-    AddNewArticle(this.state)
-      .then(this.setState(prevState => {
+    try{
+      const res = await AddNewArticle(this.state)
+      this.setState(prevState => {
         prevState.submited = true
         return prevState
-      }))
-      .catch(console.log('Algo ha ido mal'))
+      })
+      toastr.success('Your article was successfuly published')
+    }
+    catch(e) {
+      toastr.error('An error ocurred while trying to publish your article, try it later')
+    }
   }
 
   render () {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import CKEditor from 'react-ckeditor-component'
 import {Redirect} from 'react-router-dom'
+import toastr from 'toastr'
 
 import {GetArticle, ModifyArticle} from '../../Services'
 import './styles.css'
@@ -60,15 +61,20 @@ class NewArticle extends Component {
       return prevState
     })
   }
-  handleSubmit (e) {
+  handleSubmit = async (e) => {
     e.preventDefault()
-    const {id} = this.props.match.params
-    ModifyArticle(id, this.state)
-      .then(this.setState(prevState => {
+    try{
+      const {id} = this.props.match.params
+      const response = await ModifyArticle(id, this.state)
+      this.setState(prevState => {
         prevState.submited = true
         return prevState
-      }))
-      .catch(error => console.log(error.response))
+      })
+      toastr.success('Your article was successfulyupdated')
+    }
+    catch(e) {
+      toastr.error('An error ocurred while trying to update your article')
+    }
   }
 
   render () {
