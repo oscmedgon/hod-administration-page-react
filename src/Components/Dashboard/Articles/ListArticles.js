@@ -1,9 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import ReactTable from 'react-table'
-import 'react-table/react-table.css'
+import PropTypes from 'prop-types'
 
+import 'react-table/react-table.css'
 import './table.css'
+
+// Check if articleList is not an array
+ListArticles.propTypes = {
+  articleList: PropTypes.array.isRequired
+}
 
 const ListArticles = ({articleList}) => {
   const data = articleList
