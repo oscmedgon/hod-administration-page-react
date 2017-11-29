@@ -30,6 +30,9 @@ const Sidebar = () => (<div className='nav-side-menu'>
       </Link>
     </ul>
   </div>
+  <div className='return-main'>
+    <a href='/' className='singout'><i className='fa fa-sign-out fa-lg' /></a>
+  </div>
 </div>)
 
 export default Sidebar

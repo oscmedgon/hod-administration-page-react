@@ -1,15 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import ReactTable from 'react-table'
+import ReactTable, {ReactTableDefaults} from 'react-table'
 import PropTypes from 'prop-types'
 
 import 'react-table/react-table.css'
 import './table.css'
 
-// Check if articleList is not an array
-ListArticles.propTypes = {
-  articleList: PropTypes.array.isRequired
-}
+Object.assign(ReactTableDefaults, {
+  defaultPageSize: 10
+})
 
 const ListArticles = ({articleList}) => {
   const data = articleList
@@ -41,7 +40,11 @@ const ListArticles = ({articleList}) => {
   }
   ]
 
-  return <ReactTable data={data} columns={columns} />
+  return <ReactTable data={data} columns={columns} sorted={[{id: 'date_pretty', desc: true}]} />
+}
+// Check if articleList is not an array
+ListArticles.propTypes = {
+  articleList: PropTypes.array.isRequired
 }
 
 export default ListArticles

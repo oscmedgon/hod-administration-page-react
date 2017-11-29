@@ -1,6 +1,10 @@
 import React from 'react'
-import ReactTable from 'react-table'
+import ReactTable, {ReactTableDefaults} from 'react-table'
 import 'react-table/react-table.css'
+
+Object.assign(ReactTableDefaults, {
+  defaultPageSize: 10
+})
 
 const ListUsers = ({userList}) => {
   const data = userList
@@ -19,7 +23,7 @@ const ListUsers = ({userList}) => {
     accessor: 'email'
   }]
 
-  return <ReactTable data={data} columns={columns} />
+  return <ReactTable data={data} columns={columns} sorted={[{id: 'date_of_creation', desc: true}]} />
 }
 
 export default ListUsers

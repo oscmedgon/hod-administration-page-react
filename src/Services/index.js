@@ -23,5 +23,7 @@ function LoginService (data) {
 function GetDashboard () {
   return axios.get('/api/dashboard', {}, GetToken())
 }
-
-export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle, ModifyArticle, LoginService, GetDashboard}
+function uploadArticleImage (data) {
+  return axios.post('/api/upload', data)
+}
+export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle, ModifyArticle, LoginService, GetDashboard, uploadArticleImage}

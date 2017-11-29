@@ -3,7 +3,7 @@ import CKEditor from 'react-ckeditor-component'
 import {Redirect} from 'react-router-dom'
 import toastr from 'toastr'
 
-import {GetArticle, ModifyArticle} from '../../Services'
+import {GetArticle, ModifyArticle, uploadArticleImage} from '../../Services'
 import './styles.css'
 
 class NewArticle extends Component {
@@ -76,13 +76,38 @@ class NewArticle extends Component {
       toastr.error('An error ocurred while trying to update your article')
     }
   }
-
+  HandleImage = async (e) => {
+    e.preventDefault()
+    let data = new FormData()
+    let file = e.target[0].files[0]
+    // add the files to formData object for the data payload
+    data.append('file', file)
+    try{
+      const fileUrl = await uploadArticleImage(data)
+      this.setState(prevState => {
+        prevState.image = fileUrl.data.imageLink
+        return prevState
+      })
+      toastr.success('Image uploaded successfuly')
+    }
+    catch(e) {
+      toastr.error('An error ocurred while trying upload your image')
+    }
+  }
   render () {
     return (
       <div>
         <h2 className='section-title'>
           Editando el artículo {this.props.match.params.id}
         </h2>
+        <form className='imageUpload' onSubmit={this.HandleImage}>
+          <input className='input-file' type='file' id='file' name='avatar' acept='image/*'/>
+          <label for='file' id='file-upload-label'>Selecciona una imagen</label>
+          <button className='fa fa-camera fa-lg updateAvatar' type='submit'/>
+        </form>
+        <div className='image-preview'>
+          <img src={this.state.image} width='400px' alt='' />
+        </div>
         <form className='new-article-body' onSubmit={this.handleSubmit} >
           <div className='new-article-section title-section'>
             <input id='title' name='title' data-field='title' type='text' onChange={this.handleChanche} value={this.state.title} className='new-article-title' placeholder='Insert article title here...' required />
@@ -99,11 +124,6 @@ class NewArticle extends Component {
           <div className='new-article-section featured-section'>
             <label htmlFor='featured'>Mark article as featured: </label>
             <input type='checkbox' ref='featured' checked={this.state.featured} name='featured' data-field='fetured' onChange={this.handleCheckBox} />
-          </div>
-          <div className='image-preview'>
-            <input type='text' name='image' className='img-input' placeholder='Insert image url' value={this.state.image} onChange={this.handleChanche} />
-            <br />
-            <img src={this.state.image} alt='' height='300' />
           </div>
           <CKEditor
             activeClass='p10 article-editor'

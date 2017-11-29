@@ -28,8 +28,8 @@ class Dashboard extends Component{
           </h3>
           <div className='dashboard-content' >
             {
-              this.state.userDashboard.map(element => {
-                return (<p>{element.title}: <strong>{element.body}</strong> </p>)
+              this.state.userDashboard.map((element, i) => {
+                return (<p key={i}>{element.title}: <strong>{element.body}</strong> </p>)
               })
             }
           </div>
@@ -40,8 +40,8 @@ class Dashboard extends Component{
           </h3>
           <div className='dashboard-content' >
             {
-              this.state.articleDashboard.map(element => {
-                return (<p>{element.title}: <strong>{element.body}</strong> </p>)
+              this.state.articleDashboard.map((element, i) => {
+                return (<p key={i}>{element.title}: <strong>{element.body}</strong> </p>)
               })
             }
           </div>
