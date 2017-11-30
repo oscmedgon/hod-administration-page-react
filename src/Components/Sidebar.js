@@ -3,7 +3,9 @@ import {Link} from 'react-router-dom'
 import './Sidebar.css'
 
 const Sidebar = () => (<div className='nav-side-menu'>
-  <div className='brand'>Harbingers of Devastation</div>
+  <div className='brand'>
+    <img src='https://res.cloudinary.com/dm303fk5u/image/upload/v1511966508/silueta_fondo_transparente-min_yjgaol.png' height='100%' alt='Harbingers Of Devastation' />
+  </div>
   <div className='menu-list'>
     <ul id='menu-content' className='menu-content out'>
       <Link to='/administration/'>
@@ -31,7 +33,7 @@ const Sidebar = () => (<div className='nav-side-menu'>
     </ul>
   </div>
   <div className='return-main'>
-    <a href='/' className='singout'><i className='fa fa-sign-out fa-lg' /></a>
+    <a href='/' className='singout'>Logout <i className='fa fa-sign-out fa-lg' /></a>
   </div>
 </div>)
 
