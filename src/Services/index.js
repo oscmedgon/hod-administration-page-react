@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {GetToken} from './AuthServices'
-import toastr from 'toastr'
 
 function GetUserDashboard () {
   return axios.get('/api/dashboard/user', GetToken())
@@ -18,7 +17,13 @@ function ModifyArticle (id, data) {
   return axios.put(`/api/article/${id}/modify`, data, GetToken())
 }
 function LoginService (data) {
+  data.username = data.username.toLowerCase()
   return axios.post('/api/admin/login', data, GetToken())
 }
-
-export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle, ModifyArticle, LoginService}
+function GetDashboard () {
+  return axios.get('/api/dashboard', {}, GetToken())
+}
+function uploadArticleImage (data) {
+  return axios.post('/api/upload', data)
+}
+export {GetUserDashboard, GetArticlesDashboard, AddNewArticle, GetArticle, ModifyArticle, LoginService, GetDashboard, uploadArticleImage}
