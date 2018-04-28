@@ -43,9 +43,9 @@ class Login extends Component {
         <div className='login'>
           <h1>Login</h1>
           <form method='post' onSubmit={this.handleSubmit}>
-            <input type='text' name='username' placeholder='Username' onChange={this.handleChanche} required='required' />
-            <input type='password' name='password' placeholder='Password' onChange={this.handleChanche} required='required' />
-            <button type='submit' className='btn btn-primary btn-block btn-large'>Let me in.</button>
+            <input type='email' name='email' placeholder='Email' onChange={this.handleChanche} required />
+            <input type='password' name='password' placeholder='Password' onChange={this.handleChanche} required />
+            <button type='submit' className='btn btn-primary btn-block btn-large'>Login as administrator.</button>
           </form>
         </div>
       )

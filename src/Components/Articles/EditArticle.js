@@ -18,7 +18,7 @@ class NewArticle extends Component {
       image: ''
     }
     this.onChange = this.onChange.bind(this)
-    this.handleChanche = this.handleChanche.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleCheckBox = this.handleCheckBox.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -46,7 +46,7 @@ class NewArticle extends Component {
       return prevState
     })
   }
-  handleChanche (e) {
+  handleChange (e) {
     const fieldToUpdate = e.target.name
     const newData = e.target.value
     this.setState(prevState => {
@@ -79,7 +79,7 @@ class NewArticle extends Component {
   HandleImage = async (e) => {
     e.preventDefault()
     let data = new FormData()
-    let file = e.target[0].files[0]
+    let file = e.target.files[0]
     // add the files to formData object for the data payload
     data.append('file', file)
     try{
@@ -100,20 +100,19 @@ class NewArticle extends Component {
         <h2 className='section-title'>
           Editando el artículo {this.props.match.params.id}
         </h2>
-        <form className='imageUpload' onSubmit={this.HandleImage}>
+        <form className='imageUpload' onChange={this.HandleImage}>
           <input className='input-file' type='file' id='file' name='avatar' acept='image/*'/>
           <label for='file' id='file-upload-label'>Selecciona una imagen</label>
-          <button className='fa fa-camera fa-lg updateAvatar' type='submit'/>
         </form>
         <div className='image-preview'>
           <img src={this.state.image} width='400px' alt='' />
         </div>
         <form className='new-article-body' onSubmit={this.handleSubmit} >
           <div className='new-article-section title-section'>
-            <input id='title' name='title' data-field='title' type='text' onChange={this.handleChanche} value={this.state.title} className='new-article-title' placeholder='Insert article title here...' required />
+            <input id='title' name='title' data-field='title' type='text' onChange={this.handleCHange} value={this.state.title} className='new-article-title' placeholder='Insert article title here...' required />
           </div>
           <div className='new-article-section category-section'>
-            <select name='category' id='category' data-field='category' onChange={this.handleChanche} value={this.state.category} required>
+            <select name='category' id='category' data-field='category' onChange={this.handleCHange} value={this.state.category} required>
               <option value='' disabled>Select a category</option>
               <option value='noticias'>News</option>
               <option value='avisos'>Advices</option>
