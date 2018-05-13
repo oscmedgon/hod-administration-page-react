@@ -10,6 +10,7 @@ class NewArticle extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      loading: true,
       submited: false,
       title: '',
       category: '',
@@ -34,6 +35,7 @@ class NewArticle extends Component {
         prevState.category = article.category
         prevState.featured = article.featured
         prevState.body = article.body
+        prevState.loading = false
         return prevState
       })
     })
@@ -124,13 +126,15 @@ class NewArticle extends Component {
             <label htmlFor='featured'>Mark article as featured: </label>
             <input type='checkbox' ref='featured' checked={this.state.featured} name='featured' data-field='fetured' onChange={this.handleCheckBox} />
           </div>
-          <CKEditor
-            activeClass='p10 article-editor'
-            content={this.state.body}
-            events={{
-              'change': this.onChange
-            }}
-          />
+          { !this.state.loading &&
+            <CKEditor
+              activeClass='p10 article-editor'
+              content={this.state.body}
+              events={{
+                'change': this.onChange
+              }}
+            />
+          }
           <button type='submit' className='btn btn-primary btn-block btn-large'>Publish article</button>
         </form>
         {this.state.submited ? <Redirect to='/administration' /> : <div />}
