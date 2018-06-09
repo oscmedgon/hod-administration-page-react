@@ -1,10 +1,12 @@
-import React, {Component} from 'react'
-import CKEditor from 'react-ckeditor-component'
-import {Redirect} from 'react-router-dom'
-import toastr from 'toastr'
+import React, {Component} from 'react';
+import CKEditor from 'react-ckeditor-component';
+import {Redirect} from 'react-router-dom';
+import toastr from 'toastr';
 
-import {AddNewArticle, uploadArticleImage} from '../../Services'
-import './styles.css'
+import ImageCrop from '../ImageCrop/ImageCrop';
+
+import {AddNewArticle, uploadArticleImage} from '../../Services';
+import './styles.css';
 
 class NewArticle extends Component {
   constructor (props) {
@@ -15,10 +17,13 @@ class NewArticle extends Component {
       category: '',
       featured: false,
       body: '',
-      image: ''
+      image: '',
+      fileName: null,
+      toggleCrop: false,
+      tempImage: null
     }
     this.onChange = this.onChange.bind(this)
-    this.handleCHange = this.handleCHange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleCheckBox = this.handleCheckBox.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -29,7 +34,7 @@ class NewArticle extends Component {
       return prevState
     })
   }
-  handleCHange (e) {
+  handleChange (e) {
     const fieldToUpdate = e.target.name
     const newData = e.target.value
     this.setState(prevState => {
@@ -62,12 +67,31 @@ class NewArticle extends Component {
     e.preventDefault()
     let data = new FormData()
     let file = e.target.files[0]
-    // add the files to formData object for the data payload
-    data.append('file', file)
-    try{
-      const fileUrl = await uploadArticleImage(data)
+    console.log(file)
+    this.setState((prevState) => {
+      prevState.fileName = file.name;
+      prevState.tempImage = file;
+      prevState.toggleCrop = true;
+      return prevState;
+    })
+  }
+
+  handleCancelCrop = () => {
+    document.getElementById('imageUpload').reset();
+    this.setState(prevState => {
+      prevState.fileName = null;
+      prevState.toggleCrop = false;
+      prevState.tempImage = null;
+      return prevState
+    })
+  }
+  cropedImage = async (image) => {
+    try {
+      const response = await uploadArticleImage({image})
       this.setState(prevState => {
-        prevState.image = fileUrl.data.imageLink
+        prevState.image = response.data.image;
+        prevState.toggleCrop = false;
+        prevState.mpImage = null;
         return prevState
       })
       toastr.success('Image uploaded successfuly')
@@ -79,22 +103,25 @@ class NewArticle extends Component {
   render () {
     return (
       <div>
+        { this.state.toggleCrop &&
+          <ImageCrop image={this.state.tempImage} changeImage={this.cropedImage} handleUpload={this.cropedImage} handleCancelCrop={this.handleCancelCrop}/>
+        }
         <h2 className='section-title'>
           New article
         </h2>
-        <form className='imageUpload' onChange={this.HandleImage}>
-          <input className='input-file' type='file' id='file' name='avatar' acept='image/*'/>
-          <label for='file' id='file-upload-label'>Selecciona una imagen</label>
+        <form className='imageUpload' id='imageUpload' onChange={this.HandleImage}>
+          <input className='input-file' type='file' id='file' name='avatar' accept='image/*'/>
+          <label for='file' id='file-upload-label'>{this.state.fileName || 'Selecciona una imagen'}</label>
         </form>
         <div className='image-preview'>
           <img src={this.state.image} width='400px' alt='' />
         </div>
         <form className='new-article-body' onSubmit={this.handleSubmit} >
           <div className='new-article-section title-section'>
-            <input id='title' name='title' data-field='title' type='text' onChange={this.handleCHange} value={this.state.title} className='new-article-title' placeholder='Insert article title here...' required />
+            <input id='title' name='title' data-field='title' type='text' onChange={this.handleChange} value={this.state.title} className='new-article-title' placeholder='Insert article title here...' required />
           </div>
           <div className='new-article-section category-section'>
-            <select name='category' id='category' data-field='category' onChange={this.handleCHange} defaultValue={this.state.category} required>
+            <select name='category' id='category' data-field='category' onChange={this.handleChange} defaultValue={this.state.category} required>
               <option value='' disabled>Select a category</option>
               <option value='noticias'>News</option>
               <option value='avisos'>Advices</option>
