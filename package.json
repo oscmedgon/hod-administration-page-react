@@ -14,17 +14,21 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-table": "^6.7.4",
-    "toastr": "^2.1.2"
+    "toastr": "^2.1.2",
+    "snyk": "^1.161.1"
   },
   "scripts": {
     "prestart": "npm install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "proxy": "http://localhost:8080/",
   "devDependencies": {
     "emotion": "^9.1.2"
-  }
+  },
+  "snyk": true
 }
